@@ -1,0 +1,38 @@
+diff --git a/build/GridItem.js b/build/GridItem.js
+index 0a700da9f1180ca532e32e04dc7ea50f2e67b96c..8b0c67d39a8642ac3710895b628fa88ed883a389 100644
+--- a/build/GridItem.js
++++ b/build/GridItem.js
+@@ -200,13 +200,12 @@ class GridItem extends _react.default.Component /*:: <Props, State>*/{
+           const {
+             margin,
+             rowHeight,
+-            containerPadding
+           } = this.props;
+           const bottomBoundary = offsetParent.clientHeight - (0, _calculateUtils.calcGridItemWHPx)(h, rowHeight, margin[1]);
+-          top = (0, _calculateUtils.clamp)(top - containerPadding[1], 0, bottomBoundary);
++          top = (0, _calculateUtils.clamp)(top, 0, bottomBoundary);
+           const colWidth = (0, _calculateUtils.calcGridColWidth)(positionParams);
+           const rightBoundary = containerWidth - (0, _calculateUtils.calcGridItemWHPx)(w, colWidth, margin[0]);
+-          left = (0, _calculateUtils.clamp)(left - containerPadding[0], 0, rightBoundary);
++          left = (0, _calculateUtils.clamp)(left, 0, rightBoundary);
+         }
+       }
+       const newPosition /*: PartialPosition*/ = {
+@@ -224,7 +223,7 @@ class GridItem extends _react.default.Component /*:: <Props, State>*/{
+       const {
+         x,
+         y
+-      } = (0, _calculateUtils.calcXY)(positionParams, top - containerPadding[1], left - containerPadding[0], w, h);
++      } = (0, _calculateUtils.calcXY)(positionParams, top, left, w, h);
+       return onDrag.call(this, i, x, y, {
+         e,
+         node,
+@@ -267,7 +266,7 @@ class GridItem extends _react.default.Component /*:: <Props, State>*/{
+       const {
+         x,
+         y
+-      } = (0, _calculateUtils.calcXY)(this.getPositionParams(), top - containerPadding[1], left - containerPadding[0], w, h);
++      } = (0, _calculateUtils.calcXY)(this.getPositionParams(), top, left, w, h);
+       return onDragStop.call(this, i, x, y, {
+         e,
+         node,
